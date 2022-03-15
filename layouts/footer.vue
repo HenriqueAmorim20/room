@@ -94,6 +94,7 @@ footer a {
   margin-left: 0.5rem;
   text-decoration: none;
   color: var(--Black) !important;
+  font-size: clamp(0.7rem, 2vw, 1rem);
 }
 
 footer span {
