@@ -7,7 +7,13 @@
       </a>
     </div>
     <div>
-      <span>Coded by: Henrique Melo</span>
+      <a
+        href="http://www.melohenrique.com"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Coded by: Henrique Melo
+      </a>
       <a
         href="https://www.linkedin.com/in/henriqueamorim20/"
         target="_blank"
@@ -96,7 +102,7 @@ footer span {
 }
 
 .footer-media-icon {
-  width:clamp(1rem, 2.5vw, 1.2rem);;
+  width: clamp(1rem, 2.5vw, 1.2rem);
   text-decoration: none;
   transition: transform 0.5s ease;
 }
