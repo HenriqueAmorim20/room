@@ -130,11 +130,11 @@ export default {
   justify-content: center;
   max-width: 650px;
   position: relative;
-  padding: min(5%, 5.5rem);
+  padding: min(10%, 5.5rem);
 }
 
 .desc-section-title {
-  font-size: clamp(1.6rem, 2.5vw, 2.3rem);
+  font-size: clamp(1.5rem, 2.5vw, 2.3rem);
   line-height: 35px;
 }
 
@@ -213,7 +213,7 @@ export default {
 .about-section-title {
   text-transform: uppercase;
   letter-spacing: 6px;
-  font-size: clamp(0.7rem, 1vw, 1rem);
+  font-size: clamp(0.6rem, 1vw, 1rem);
 }
 
 .about-section-info {
@@ -242,7 +242,7 @@ export default {
   }
 
   .desc-section {
-    max-width: 390px;
+    max-width: 400px;
   }
     .bottom {
     flex-direction: column;
@@ -250,7 +250,7 @@ export default {
   }
 
   .about-section {
-    padding: min(7vw, 2rem);
+    padding: min(15%, 2rem);
   }
 
   .side-img,
