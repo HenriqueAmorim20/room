@@ -83,6 +83,8 @@ footer div {
 }
 
 footer a {
+  display: flex;
+  align-items: center;
   margin-left: 0.5rem;
   text-decoration: none;
   color: var(--Black) !important;
@@ -90,10 +92,11 @@ footer a {
 
 footer span {
   font-weight: normal;
+  font-size: clamp(0.7rem, 2vw, 1rem);
 }
 
 .footer-media-icon {
-  width: 1.2rem;
+  width:clamp(1rem, 2.5vw, 1.2rem);;
   text-decoration: none;
   transition: transform 0.5s ease;
 }
