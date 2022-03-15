@@ -2,31 +2,36 @@
   <div class="main">
     <div class="top">
       <section class="top-main-img">
-        <v-img :src="require(`@/static/desktop-image-hero-${index+1}.jpg`)" contain />
+        <v-img
+          :src="require(`@/static/desktop-image-hero-${index + 1}.jpg`)"
+          contain
+        />
       </section>
       <aside class="desc-section">
         <h1 class="desc-section-title">{{ heroes[index].title }}</h1>
         <p class="desc-section-info">
           {{ heroes[index].desc }}
         </p>
-        <v-btn class="desc-section-btn">
+        <div class="desc-section-btn">
           <span> shop now </span>
           <v-img
             class="desc-section-btn-icon"
             :src="require('@/static/icon-arrow.svg')"
           />
-        </v-btn>
+        </div>
         <div class="desc-section-actions">
-          <v-img
-            class="desc-section-actions-arrow"
-            :src="require('@/static/icon-angle-left.svg')"
-            @click="changeContent(1)"
-          />
-          <v-img
-            class="desc-section-actions-arrow"
-            :src="require('@/static/icon-angle-right.svg')"
-            @click="changeContent(-1)"
-          />
+          <div class="desc-section-actions-arrow">
+            <v-img
+              :src="require('@/static/icon-angle-left.svg')"
+              @click="changeContent(1)"
+            />
+          </div>
+          <div class="desc-section-actions-arrow">
+            <v-img
+              :src="require('@/static/icon-angle-right.svg')"
+              @click="changeContent(-1)"
+            />
+          </div>
         </div>
       </aside>
     </div>
@@ -76,11 +81,11 @@ export default {
   },
   methods: {
     changeContent(i) {
-      this.index += i
-      if(this.index < 0) this.index = this.heroes.length -1
-      else if(this.index === this.heroes.length) this.index = 0
-    }
-  }
+      this.index += i;
+      if (this.index < 0) this.index = this.heroes.length - 1;
+      else if (this.index === this.heroes.length) this.index = 0;
+    },
+  },
 };
 </script>
 
@@ -103,17 +108,62 @@ export default {
   width: 40%;
   display: flex;
   flex-direction: column;
+  position: relative;
+  padding: 7rem;
+}
+
+.desc-section-title {
+  font-size: 2rem;
+  line-height: 35px;
+}
+
+.desc-section-info {
+  font-size: 0.8rem;
+  color: var(--DarkGray);
+  margin: 2rem 0;
+}
+
+.desc-section-btn {
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: var(--Black);
+  font-weight: 500;
+  font-size: 0.9rem;
+  letter-spacing: 10px;
+  transition: opacity 0.5s ease;
+}
+
+.desc-section-btn-icon {
+  max-width: 50px !important;
+  margin-left: 40px;
+}
+
+.desc-section-btn:hover{
+  opacity: 0.5;
 }
 
 .desc-section-actions {
   display: flex;
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
 
 .desc-section-actions-arrow {
-  max-width: 50px !important;
-  aspect-ratio: 1 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1.1;
   background-color: #000;
   cursor: pointer;
+  padding: 1rem 2.5rem;
+  transition: opacity 0.5s ease;
+}
+
+.desc-section-actions-arrow:hover {
+  opacity: 0.75;
 }
 
 .bottom {
