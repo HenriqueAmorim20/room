@@ -1,8 +1,8 @@
 <template>
   <div class="main">
     <div class="top">
-      <section class="main-img">
-        <v-img :src="require('@/static/desktop-image-hero-1.jpg')" />
+      <section class="top-main-img">
+        <v-img :src="require(`@/static/desktop-image-hero-${index+1}.jpg`)" contain />
       </section>
       <aside class="desc-section">
         <h1 class="desc-section-title">{{ heroes[index].title }}</h1>
@@ -11,17 +11,28 @@
         </p>
         <v-btn class="desc-section-btn">
           <span> shop now </span>
-          <v-img :src="require('@/static/icon-arrow.svg')" />
+          <v-img
+            class="desc-section-btn-icon"
+            :src="require('@/static/icon-arrow.svg')"
+          />
         </v-btn>
         <div class="desc-section-actions">
-          <v-img :src="require('@/static/icon-angle-left.svg')" />
-          <v-img :src="require('@/static/icon-angle-right.svg')" />
+          <v-img
+            class="desc-section-actions-arrow"
+            :src="require('@/static/icon-angle-left.svg')"
+            @click="changeContent(1)"
+          />
+          <v-img
+            class="desc-section-actions-arrow"
+            :src="require('@/static/icon-angle-right.svg')"
+            @click="changeContent(-1)"
+          />
         </div>
       </aside>
     </div>
     <div class="bottom">
       <aside class="side-img">
-        <v-img :src="require('@/static/image-about-dark.jpg')" />
+        <v-img :src="require('@/static/image-about-dark.jpg')" contain />
       </aside>
       <section class="about-section">
         <h2 class="about-section-title">About our furniture</h2>
@@ -35,7 +46,7 @@
         </p>
       </section>
       <aside class="side-img">
-        <v-img :src="require('@/static/image-about-light.jpg')" />
+        <v-img :src="require('@/static/image-about-light.jpg')" contain />
       </aside>
     </div>
   </div>
@@ -63,11 +74,57 @@ export default {
       index: 0,
     };
   },
+  methods: {
+    changeContent(i) {
+      this.index += i
+      if(this.index < 0) this.index = this.heroes.length -1
+      else if(this.index === this.heroes.length) this.index = 0
+    }
+  }
 };
 </script>
 
 <style scoped>
 .main {
-  min-height: 100vh;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.top {
+  display: flex;
+}
+
+.top-main-img {
+  width: 60%;
+}
+
+.desc-section {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+}
+
+.desc-section-actions {
+  display: flex;
+}
+
+.desc-section-actions-arrow {
+  max-width: 50px !important;
+  aspect-ratio: 1 !important;
+  background-color: #000;
+  cursor: pointer;
+}
+
+.bottom {
+  display: flex;
+}
+
+.side-img {
+  width: 30%;
+}
+
+.about-section {
+  width: 40%;
 }
 </style>
