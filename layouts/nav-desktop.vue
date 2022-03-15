@@ -48,6 +48,5 @@ export default {
   left: calc(50% - 15px);
   width: 30px;
   border-bottom: 2px solid white;
-
 }
 </style>
