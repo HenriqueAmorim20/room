@@ -20,17 +20,11 @@
           />
         </div>
         <div class="desc-section-actions">
-          <div class="desc-section-actions-arrow">
-            <v-img
-              :src="require('@/static/icon-angle-left.svg')"
-              @click="changeContent(1)"
-            />
+          <div class="desc-section-actions-arrow" @click="changeContent(-1)">
+            <v-img :src="require('@/static/icon-angle-left.svg')" />
           </div>
-          <div class="desc-section-actions-arrow">
-            <v-img
-              :src="require('@/static/icon-angle-right.svg')"
-              @click="changeContent(-1)"
-            />
+          <div class="desc-section-actions-arrow" @click="changeContent(1)">
+            <v-img :src="require('@/static/icon-angle-right.svg')" />
           </div>
         </div>
       </aside>
@@ -83,7 +77,7 @@ export default {
     changeContent(i) {
       this.index += i;
       if (this.index < 0) this.index = this.heroes.length - 1;
-      else if (this.index === this.heroes.length) this.index = 0;
+      if (this.index === this.heroes.length) this.index = 0;
     },
   },
 };
@@ -140,7 +134,7 @@ export default {
   margin-left: 40px;
 }
 
-.desc-section-btn:hover{
+.desc-section-btn:hover {
   opacity: 0.5;
 }
 
