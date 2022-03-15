@@ -32,7 +32,7 @@ export default {
 }
 
 .menu-item {
-  font-size: clamp(0.6rem, 1.2vw, 1rem);
+  font-size: clamp(0.8rem, 1.2vw, 1rem);
   margin: 0 1rem;
   font-weight: 600;
   cursor: pointer;

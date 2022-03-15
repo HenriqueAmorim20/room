@@ -2,7 +2,22 @@
   <div class="main">
     <div class="top">
       <section class="top-main-img">
-        <v-img :src="require(`@/static/desktop-image-hero-${index + 1}.jpg`)" contain/>
+        <v-img
+          :src="
+            require(`@/static/${
+              width > 600 ? 'desktop' : 'mobile'
+            }-image-hero-${index + 1}.jpg`)
+          "
+          :aspect-ratio="width <= 600 ? 1 : ''"
+        />
+        <div v-if="width <= 1050" class="desc-section-actions-mobile">
+          <div class="desc-section-actions-arrow" @click="changeContent(-1)">
+            <v-img :src="require('@/static/icon-angle-left.svg')" />
+          </div>
+          <div class="desc-section-actions-arrow" @click="changeContent(1)">
+            <v-img :src="require('@/static/icon-angle-right.svg')" />
+          </div>
+        </div>
       </section>
       <aside class="desc-section">
         <h1 class="desc-section-title">{{ heroes[index].title }}</h1>
@@ -16,7 +31,7 @@
             :src="require('@/static/icon-arrow.svg')"
           />
         </div>
-        <div class="desc-section-actions">
+        <div v-if="width > 1050" class="desc-section-actions-desktop">
           <div class="desc-section-actions-arrow" @click="changeContent(-1)">
             <v-img :src="require('@/static/icon-angle-left.svg')" />
           </div>
@@ -28,7 +43,7 @@
     </div>
     <div class="bottom">
       <aside class="side-img">
-        <v-img :src="require('@/static/image-about-dark.jpg')" />
+        <v-img :src="require('@/static/image-about-dark.jpg')" height="100%" />
       </aside>
       <section class="about-section">
         <h5 class="about-section-title">About our furniture</h5>
@@ -42,7 +57,7 @@
         </p>
       </section>
       <aside class="side-img">
-        <v-img :src="require('@/static/image-about-light.jpg')" />
+        <v-img :src="require('@/static/image-about-light.jpg')" height="100%" />
       </aside>
     </div>
   </div>
@@ -68,9 +83,22 @@ export default {
         },
       ],
       index: 0,
+      width: null,
     };
   },
+  mounted() {
+    this.width = window.innerWidth;
+    this.$nextTick(() => {
+      window.addEventListener("resize", this.onResize);
+    });
+  },
+  beforeDestroy() {
+    window.removeEventListener("resize", this.onResize);
+  },
   methods: {
+    onResize() {
+      this.width = window.innerWidth;
+    },
     changeContent(i) {
       this.index += i;
       if (this.index < 0) this.index = this.heroes.length - 1;
@@ -92,6 +120,7 @@ export default {
 
 .top-main-img {
   width: 60%;
+  position: relative;
 }
 
 .desc-section {
@@ -105,14 +134,14 @@ export default {
 }
 
 .desc-section-title {
-  font-size: clamp(1rem,2.5vw,2.3rem);
+  font-size: clamp(1.6rem, 2.5vw, 2.3rem);
   line-height: 35px;
 }
 
 .desc-section-info {
-  font-size: clamp(0.6rem,1vw,0.9rem);
+  font-size: clamp(0.6rem, 1vw, 0.9rem);
   color: var(--DarkGray);
-  margin: 2rem 0;
+  margin: 1.5rem 0;
 }
 
 .desc-section-btn {
@@ -122,13 +151,13 @@ export default {
   cursor: pointer;
   color: var(--Black);
   font-weight: 500;
-  font-size: clamp(0.6rem,1vw,0.9rem);
+  font-size: clamp(0.6rem, 1vw, 0.9rem);
   letter-spacing: 0.5vw;
   transition: opacity 0.5s ease;
 }
 
 .desc-section-btn-icon {
-  max-width: min(50px, 3vw) !important;
+  max-width: min(40px, 8vw) !important;
   margin-left: 40px;
   transition: transform 0.7s ease;
 }
@@ -141,11 +170,18 @@ export default {
   transform: translate(10px, 0);
 }
 
-.desc-section-actions {
+.desc-section-actions-desktop {
   display: flex;
   position: absolute;
   bottom: 0;
   left: 0;
+}
+
+.desc-section-actions-mobile {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
 
 .desc-section-actions-arrow {
@@ -155,7 +191,7 @@ export default {
   aspect-ratio: 1;
   background-color: #000;
   cursor: pointer;
-  padding: 1vw 2vw;
+  padding: max(1vw, 10px) max(2vw, 20px);
   transition: opacity 0.5s ease;
 }
 
@@ -171,17 +207,17 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: min(4vw,3rem);
+  padding: 0 min(4vw, 3rem);
 }
 
 .about-section-title {
   text-transform: uppercase;
   letter-spacing: 6px;
-  font-size: clamp(0.7rem,1vw,1rem);
+  font-size: clamp(0.7rem, 1vw, 1rem);
 }
 
 .about-section-info {
-  font-size: clamp(0.6rem,1vw,0.9rem);
+  font-size: clamp(0.6rem, 1vw, 0.9rem);
   color: var(--DarkGray);
   margin: 1rem 0 0;
 }
@@ -193,4 +229,38 @@ export default {
 .about-section {
   width: 40%;
 }
+
+@media (max-width: 1050px) {
+  .top {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .top-main-img,
+  .desc-section {
+    width: 100%;
+  }
+
+  .desc-section {
+    max-width: 390px;
+  }
+    .bottom {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about-section {
+    padding: min(7vw, 2rem);
+  }
+
+  .side-img,
+  .about-section {
+    width: 100%;
+  }
+
+  .about-section {
+    max-width: 400px;
+  }
+}
+
 </style>
