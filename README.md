@@ -1,10 +1,10 @@
-# Frontend Mentor - Room homepage solution
+# Room homepage
 
 This is a solution to the [Room homepage challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/room-homepage-BtdBY_ENq). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
 
 ## Table of contents
 
-- [Frontend Mentor - Room homepage solution](#frontend-mentor---room-homepage-solution)
+- [Room homepage](#room-homepage)
   - [Table of contents](#table-of-contents)
   - [Overview](#overview)
     - [The challenge](#the-challenge)
@@ -52,8 +52,7 @@ Users should be able to:
 
 I learned i lot about clamp and responsive width/font-size, also a lot of layout position practise.
 
-To see how you can add code snippets, see below:
-
+code i'm proud of:
 ```css
 .desc-section-btn {
   display: flex;
